@@ -14,6 +14,7 @@ import bl4ckscor3.plugin.fmsg.commands.FakeLeave;
 public class FakeMessages extends JavaPlugin
 {
 	public static List<String> fakeOfflinePlayers = new ArrayList<String>();
+	public static List<String> fakeOnlinePlayers = new ArrayList<String>();
 	
 	@Override
 	public void onEnable()
@@ -31,24 +32,24 @@ public class FakeMessages extends JavaPlugin
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		Player p = null;
-		
+
 		if(sender instanceof Player)
 			p = (Player)sender;
 		
 		if(cmd.getName().equals("fjoin"))
 		{
-			if(args.length > 0)
+			if(args.length > 1)
 				return false;
 
-			FakeJoin.exe(p);
+			FakeJoin.exe(p, args);
 			return true;
 		}
 		else if(cmd.getName().equals("fleave"))
 		{
-			if(args.length > 0)
+			if(args.length > 1)
 				return false;
 			
-			FakeLeave.exe(p);
+			FakeLeave.exe(p, args);
 			return true;
 		}
 		

@@ -8,21 +8,40 @@ import bl4ckscor3.plugin.fmsg.core.FakeMessages;
 
 public class FakeJoin
 {
-	public static void exe(Player p)
+	public static void exe(Player p, String args[])
 	{
-		if(FakeMessages.fakeOfflinePlayers.contains(p.getName()))
+		if(args.length == 1)
 		{
-			Player[] players = Bukkit.getOnlinePlayers();
-
-			for(Player pl : players)
+			if(!FakeMessages.fakeOnlinePlayers.contains(args[0]))
 			{
-				pl.sendMessage(ChatColor.YELLOW + p.getName() + " joined the game.");
-			}
+				Player[] players = Bukkit.getOnlinePlayers();
 
-			FakeMessages.fakeOfflinePlayers.remove(p.getName());
-			Bukkit.dispatchCommand(p, "vanish");
+				for(Player pl : players)
+				{
+					pl.sendMessage(ChatColor.YELLOW + args[0] + " joined the game.");
+				}
+
+				FakeMessages.fakeOnlinePlayers.add(args[0]);
+			}
+			else
+				p.sendMessage(ChatColor.RED + "[FakeMessages] This player already fake-joined the server. Use /fleave <name> to let him fake-leave.");
 		}
 		else
-			p.sendMessage(ChatColor.RED + "[FakeMessages] You have not fake-left the server yet. Use /fleave to do that now.");
+		{
+			if(FakeMessages.fakeOfflinePlayers.contains(p.getName()))
+			{
+				Player[] players = Bukkit.getOnlinePlayers();
+
+				for(Player pl : players)
+				{
+					pl.sendMessage(ChatColor.YELLOW + p.getName() + " joined the game.");
+				}
+
+				FakeMessages.fakeOfflinePlayers.remove(p.getName());
+				Bukkit.dispatchCommand(p, "vanish");
+			}
+			else
+				p.sendMessage(ChatColor.RED + "[FakeMessages] You have not fake-left the server yet. Use /fleave to do that now.");
+		}
 	}
 }

@@ -1,13 +1,14 @@
 name: FakeMessages
 main: bl4ckscor3.plugin.fmsg.core.FakeMessages
-version: 1.0
+version: 1.1
 author: bl4ckscor3
+description: Displays fake join/leave messages and more!
 commands:
     fjoin:
-        description: Sends a leave message.
-        usage: /<command>
+        description: Displays a leave message.
+        usage: /<command> [name]
         aliases: [fj,fakejoin]
     fleave:
         description: Displays a fake leave message.
-        usage: /<command>
+        usage: /<command> [name]
         aliases: [fl,fakeleave]
