@@ -38,17 +38,17 @@ public class FakeMessages extends JavaPlugin
 		if(sender instanceof Player)
 			p = (Player)sender;
 
+		if(p == null)
+		{
+			System.out.println("[FakeMessages] The console cannot use this plugin. Please join the server and execute the commands on there.");
+			return true;
+		}
+		
 		if(cmd.getName().equals("fjoin"))
 		{
 			if(args.length > 1)
 				return false;
 
-			if(args.length == 0 && p == null)
-			{
-				System.out.println("[FakeMessages] The console can't fake-join. Use \"/fjoin <name>\" instead.");
-				return true;
-			}
-				
 			FakeJoin.exe(p, args);
 			return true;
 		}
@@ -57,12 +57,6 @@ public class FakeMessages extends JavaPlugin
 			if(args.length > 1)
 				return false;
 
-			if(args.length == 0 && p == null)
-			{
-				System.out.println("[FakeMessages] The console can't fake-leave. Use \"/fleave <name>\" instead.");
-				return true;
-			}
-			
 			FakeLeave.exe(p, args);
 			return true;
 		}
