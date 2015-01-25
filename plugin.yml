@@ -1,6 +1,6 @@
 name: FakeMessages
 main: bl4ckscor3.plugin.fmsg.core.FakeMessages
-version: 1.1
+version: 1.2
 author: bl4ckscor3
 description: Displays fake join/leave messages and more!
 commands:

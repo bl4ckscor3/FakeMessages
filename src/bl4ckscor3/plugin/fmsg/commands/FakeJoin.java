@@ -12,7 +12,29 @@ public class FakeJoin
 	{
 		if(args.length == 1)
 		{
-			if(!FakeMessages.fakeOnlinePlayers.contains(args[0]))
+			boolean firstCheck = false;
+
+			if(FakeMessages.isOnline(args[0])) //fake-join for other players currently on the server
+			{
+				if(FakeMessages.fakeOfflinePlayers.contains(args[0]))
+				{
+					Player[] players = Bukkit.getOnlinePlayers();
+
+					for(Player pl : players)
+					{
+						pl.sendMessage(ChatColor.YELLOW + args[0] + " joined the game.");
+					}
+
+					FakeMessages.fakeOfflinePlayers.remove(args[0]);
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "vanish " + args[0]);
+				}
+				else
+					p.sendMessage(ChatColor.RED + "[FakeMessages] This player has not fake-left the server. Use /fleave " + args[0] + " to let him do that.");
+
+				firstCheck = true;
+			}
+
+			if(!firstCheck && !FakeMessages.fakeOnlinePlayers.contains(args[0])) //fake-join for people who are not on the server (e.g. "/fjoin AntVenom" let's AntVenom fake-join)
 			{
 				Player[] players = Bukkit.getOnlinePlayers();
 
@@ -24,9 +46,12 @@ public class FakeJoin
 				FakeMessages.fakeOnlinePlayers.add(args[0]);
 			}
 			else
-				p.sendMessage(ChatColor.RED + "[FakeMessages] This player already fake-joined the server. Use /fleave <name> to let him fake-leave.");
+			{
+				if(!firstCheck)
+					p.sendMessage(ChatColor.RED + "[FakeMessages] This player already fake-joined the server. Use /fleave " + args[0] + " to let him fake-leave.");
+			}
 		}
-		else
+		else //fake-join for yourself
 		{
 			if(FakeMessages.fakeOfflinePlayers.contains(p.getName()))
 			{
@@ -38,7 +63,7 @@ public class FakeJoin
 				}
 
 				FakeMessages.fakeOfflinePlayers.remove(p.getName());
-				Bukkit.dispatchCommand(p, "vanish");
+				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "vanish " + p.getName());
 			}
 			else
 				p.sendMessage(ChatColor.RED + "[FakeMessages] You have not fake-left the server yet. Use /fleave to do that now.");
