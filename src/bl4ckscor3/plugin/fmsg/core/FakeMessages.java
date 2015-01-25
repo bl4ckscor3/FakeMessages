@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -44,23 +43,26 @@ public class FakeMessages extends JavaPlugin
 			return true;
 		}
 		
-		if(cmd.getName().equals("fjoin"))
+		if(p.hasPermission("fmsg.use")
 		{
-			if(args.length > 1)
-				return false;
-
-			FakeJoin.exe(p, args);
-			return true;
+			if(cmd.getName().equals("fjoin"))
+			{
+				if(args.length > 1)
+					return false;
+	
+				FakeJoin.exe(p, args);
+				return true;
+			}
+			else if(cmd.getName().equals("fleave"))
+			{
+				if(args.length > 1)
+					return false;
+	
+				FakeLeave.exe(p, args);
+				return true;
+			}
 		}
-		else if(cmd.getName().equals("fleave"))
-		{
-			if(args.length > 1)
-				return false;
-
-			FakeLeave.exe(p, args);
-			return true;
-		}
-
+		
 		return false;
 	}
 
