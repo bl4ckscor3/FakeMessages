@@ -43,7 +43,7 @@ public class FakeMessages extends JavaPlugin
 			return true;
 		}
 		
-		if(p.hasPermission("fmsg.use")
+		if(p.hasPermission("fmsg.use"))
 		{
 			if(cmd.getName().equals("fjoin"))
 			{
