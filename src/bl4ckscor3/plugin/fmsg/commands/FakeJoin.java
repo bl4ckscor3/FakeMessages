@@ -29,7 +29,7 @@ public class FakeJoin
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "vanish " + args[0]);
 				}
 				else
-					p.sendMessage(ChatColor.RED + "[FakeMessages] This player has not fake-left the server. Use /fleave " + args[0] + " to let him do that.");
+					p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] This player has not fake-left the server. Use /fleave " + args[0] + " to let him do that.");
 
 				firstCheck = true;
 			}
@@ -48,7 +48,7 @@ public class FakeJoin
 			else
 			{
 				if(!firstCheck)
-					p.sendMessage(ChatColor.RED + "[FakeMessages] This player already fake-joined the server. Use /fleave " + args[0] + " to let him fake-leave.");
+					p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] This player already fake-joined the server. Use /fleave " + args[0] + " to let him fake-leave.");
 			}
 		}
 		else //fake-join for yourself
@@ -66,7 +66,7 @@ public class FakeJoin
 				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "vanish " + p.getName());
 			}
 			else
-				p.sendMessage(ChatColor.RED + "[FakeMessages] You have not fake-left the server yet. Use /fleave to do that now.");
+				p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] You have not fake-left the server yet. Use /fleave to do that now.");
 		}
 	}
 }

@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import bl4ckscor3.plugin.fmsg.commands.FakeJoin;
@@ -16,10 +17,12 @@ public class FakeMessages extends JavaPlugin
 {
 	public static List<String> fakeOfflinePlayers = new ArrayList<String>();
 	public static List<String> fakeOnlinePlayers = new ArrayList<String>();
-
+	public static Plugin instance;
+	
 	@Override
 	public void onEnable()
 	{
+		instance = this;
 		System.out.println("[FakeMessages] v " + getDescription().getVersion() + " enabled.");
 	}
 
