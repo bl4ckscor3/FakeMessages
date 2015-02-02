@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import bl4ckscor3.plugin.fmsg.commands.Check;
 import bl4ckscor3.plugin.fmsg.commands.FakeJoin;
 import bl4ckscor3.plugin.fmsg.commands.FakeLeave;
 
@@ -18,7 +19,7 @@ public class FakeMessages extends JavaPlugin
 	public static List<String> fakeOfflinePlayers = new ArrayList<String>();
 	public static List<String> fakeOnlinePlayers = new ArrayList<String>();
 	public static Plugin instance;
-	
+
 	@Override
 	public void onEnable()
 	{
@@ -45,27 +46,40 @@ public class FakeMessages extends JavaPlugin
 			System.out.println("[FakeMessages] The console cannot use this plugin. Please join the server and execute the commands on there.");
 			return true;
 		}
-		
-		if(p.hasPermission("fmsg.use"))
+
+		if(cmd.getName().equals("fjoin"))
 		{
-			if(cmd.getName().equals("fjoin"))
+			if(p.hasPermission("fmsg.use"))
 			{
 				if(args.length > 1)
 					return false;
-	
+
 				FakeJoin.exe(p, args);
 				return true;
 			}
-			else if(cmd.getName().equals("fleave"))
+		}
+		else if(cmd.getName().equals("fleave"))
+		{
+			if(p.hasPermission("fmsg.use"))
 			{
 				if(args.length > 1)
 					return false;
-	
+
 				FakeLeave.exe(p, args);
 				return true;
 			}
 		}
-		
+		else if(cmd.getName().equalsIgnoreCase("fcheck"))
+		{
+			if(p.hasPermission("fmsg.check"))
+			{
+				if(args.length == 0 || args.length > 1)
+					return false;
+
+				Check.exe(p, args[0]);
+				return true;
+			}
+		}
 		return false;
 	}
 
