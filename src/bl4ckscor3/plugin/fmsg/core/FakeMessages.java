@@ -91,7 +91,7 @@ public class FakeMessages extends JavaPlugin
 
 		for(Player p : players)
 		{
-			if(p.getName().equals(name))
+			if(p.getName().equalsIgnoreCase(name))
 				return true;
 		}
 
