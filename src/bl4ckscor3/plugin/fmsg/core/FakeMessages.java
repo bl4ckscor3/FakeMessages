@@ -13,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import bl4ckscor3.plugin.fmsg.commands.Check;
 import bl4ckscor3.plugin.fmsg.commands.FakeJoin;
 import bl4ckscor3.plugin.fmsg.commands.FakeLeave;
+import bl4ckscor3.plugin.fmsg.listener.ChatListener;
 import bl4ckscor3.plugin.fmsg.listener.JoinLeaveListener;
 
 public class FakeMessages extends JavaPlugin
@@ -26,6 +27,7 @@ public class FakeMessages extends JavaPlugin
 	{
 		instance = this;
 		getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);
+		getServer().getPluginManager().registerEvents(new ChatListener(), this);
 		System.out.println("[FakeMessages] v " + getDescription().getVersion() + " enabled.");
 	}
 
