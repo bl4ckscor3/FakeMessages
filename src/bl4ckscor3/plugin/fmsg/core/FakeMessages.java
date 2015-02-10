@@ -28,13 +28,13 @@ public class FakeMessages extends JavaPlugin
 		instance = this;
 		getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);
 		getServer().getPluginManager().registerEvents(new ChatListener(), this);
-		System.out.println("[FakeMessages] v " + getDescription().getVersion() + " enabled.");
+		System.out.println("[" + getDescription().getName() + "] v " + getDescription().getVersion() + " enabled.");
 	}
 
 	@Override
 	public void onDisable()
 	{
-		System.out.println("[FakeMessages] v " + getDescription().getVersion() + " disabled.");
+		System.out.println("[" + getDescription().getName() + "] v " + getDescription().getVersion() + " disabled.");
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class FakeMessages extends JavaPlugin
 
 		if(p == null)
 		{
-			System.out.println("[FakeMessages] The console cannot use this plugin. Please join the server and execute the commands on there.");
+			System.out.println("[" + getDescription().getName() + "] The console cannot use this plugin. Please join the server and execute the commands on there.");
 			return true;
 		}
 
