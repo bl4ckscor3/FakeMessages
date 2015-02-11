@@ -11,12 +11,15 @@ public class Check
 	{
 		for(String s : FakeMessages.fakeOfflinePlayers)
 		{
-			if(FakeMessages.isOnline(s))
+			if(!s.equals(name))
+				continue;
+			
+			if(FakeMessages.isOnline(name))
 			{
-				p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] This player is fake-offline.");
+				p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + name + " player is fake-offline.");
 				return;
 			}
 		}
-		p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] This player is not fake-offline.");
+		p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + name + " player is not fake-offline.");
 	}
 }
