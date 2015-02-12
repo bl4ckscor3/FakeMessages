@@ -31,6 +31,7 @@ permissions:
         children:
             fmsg.use: true
             fmsg.check: true
+            fmsg.reload: true
     fmsg.use:
         description: Allows access to fakeleave and fakejoin.
         default: op
