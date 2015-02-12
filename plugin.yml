@@ -1,4 +1,4 @@
-﻿name: FakeMessages
+name: FakeMessages
 main: bl4ckscor3.plugin.fmsg.core.FakeMessages
 version: 1.4.3
 author: bl4ckscor3
@@ -15,6 +15,10 @@ commands:
     fcheck:
         description: Checks if a player has fake-left.
         usage: /<command <name>
+        aliases: [fc,fakecheck]
+    freload:
+        description: Reloads the configuration file.
+        usage: /<command>
         aliases: [fr]
 
 permissions:

@@ -31,13 +31,13 @@ public class FakeMessages extends JavaPlugin
 		getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);
 		getServer().getPluginManager().registerEvents(new ChatListener(), this);
 		Config.createConfig(this);
-		System.out.println("[" + getDescription().getName() + "] v " + getDescription().getVersion() + " enabled.");
+		System.out.println("[" + getDescription().getName() + "] v" + getDescription().getVersion() + " enabled.");
 	}
 
 	@Override
 	public void onDisable()
 	{
-		System.out.println("[" + getDescription().getName() + "] v " + getDescription().getVersion() + " disabled.");
+		System.out.println("[" + getDescription().getName() + "] v" + getDescription().getVersion() + " disabled.");
 	}
 
 	@Override
