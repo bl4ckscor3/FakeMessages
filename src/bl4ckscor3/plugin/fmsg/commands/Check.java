@@ -16,10 +16,10 @@ public class Check
 			
 			if(FakeMessages.isOnline(name))
 			{
-				p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + name + " player is fake-offline.");
+				p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + name + " is fake-offline.");
 				return;
 			}
 		}
-		p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + name + " player is not fake-offline.");
+		p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + name + " is not fake-offline.");
 	}
 }
