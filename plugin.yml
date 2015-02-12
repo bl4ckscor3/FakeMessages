@@ -1,6 +1,6 @@
 name: FakeMessages
 main: bl4ckscor3.plugin.fmsg.core.FakeMessages
-version: 1.4.1
+version: 1.4.3
 author: bl4ckscor3
 description: Displays fake join/leave messages and more!
 commands:
@@ -19,6 +19,11 @@ commands:
         usage: /<command> <name>
         aliases: [fc,fakecheck]
         permission: fmsg.check
+   freload:
+       description: Reloads the configuration file.
+       usage: /<command>
+       aliases: [fr]
+       permission: fmsg.reload
 
 permissions:
     fmsg.*:

@@ -87,6 +87,15 @@ public class FakeMessages extends JavaPlugin
 				return true;
 			}
 		}
+		else if(cmd.getName().equalsIgnoreCase("freload"))
+		{
+			if(p.hasPermission("fmsg.reload"))
+			{
+				reloadConfig();
+				p.sendMessage("[" + ChatColor.BLUE + getDescription().getName() + ChatColor.RESET + "] Reloaded configuration successfully.");
+				return true;
+			}
+		}
 		return false;
 	}
 
