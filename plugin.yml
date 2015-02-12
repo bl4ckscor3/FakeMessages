@@ -37,3 +37,6 @@ permissions:
     fmsg.check:
         description: Allows access to check if a player has fakeleft.
         default: op
+    fmsg.reload:
+        description: Allows access to reload the configuration file.
+        default: op
