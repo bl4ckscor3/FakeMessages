@@ -22,7 +22,7 @@ public class FakeLeave
 
 					for(Player pl : players)
 					{
-						pl.sendMessage(ChatColor.YELLOW + args[0] + " left the game.");
+						FakeMessages.letPlayerLeave(pl, args[0]);
 					}
 
 					FakeMessages.fakeOfflinePlayers.add(args[0]);
@@ -40,7 +40,7 @@ public class FakeLeave
 
 				for(Player pl : players)
 				{
-					pl.sendMessage(ChatColor.YELLOW + args[0] + " left the game.");
+					FakeMessages.letPlayerLeave(pl, args[0]);
 				}
 
 				FakeMessages.fakeOnlinePlayers.remove(args[0]);
@@ -59,7 +59,7 @@ public class FakeLeave
 
 				for(Player pl : players)
 				{
-					pl.sendMessage(ChatColor.YELLOW + p.getName() + " left the game.");
+					FakeMessages.letPlayerLeave(pl, p.getName());
 				}
 
 				FakeMessages.fakeOfflinePlayers.add(p.getName());

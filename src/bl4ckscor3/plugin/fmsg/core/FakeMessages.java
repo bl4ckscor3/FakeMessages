@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -28,6 +30,7 @@ public class FakeMessages extends JavaPlugin
 		instance = this;
 		getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);
 		getServer().getPluginManager().registerEvents(new ChatListener(), this);
+		Config.createConfig(this);
 		System.out.println("[" + getDescription().getName() + "] v " + getDescription().getVersion() + " enabled.");
 	}
 
@@ -98,5 +101,45 @@ public class FakeMessages extends JavaPlugin
 		}
 
 		return false;
+	}
+
+	public static void letPlayerJoin(Player p, String name)
+	{
+		String joinMessage = instance.getConfig().getString("join-message");
+
+		joinMessage = joinMessage.replace("&", "\u00A7");
+
+		if(isOnline(name))
+		{
+			joinMessage = joinMessage.replace("{USERNAME}", Bukkit.getPlayer(name).getName());
+			joinMessage = joinMessage.replace("{PLAYER}", Bukkit.getPlayer(name).getDisplayName());
+		}
+		else
+		{
+			joinMessage = joinMessage.replace("{USERNAME}", Bukkit.getOfflinePlayer(name).getName());
+			joinMessage = joinMessage.replace("{PLAYER}", name); //TODO: Add prefix and suffix
+		}
+		
+		p.sendMessage(joinMessage);
+	}
+
+	public static void letPlayerLeave(Player p, String name)
+	{
+		String leaveMessage = instance.getConfig().getString("leave-message");
+
+		leaveMessage = leaveMessage.replace("&", "\u00A7");
+		
+		if(isOnline(name))
+		{
+			leaveMessage = leaveMessage.replace("{USERNAME}", Bukkit.getPlayer(name).getName());
+			leaveMessage = leaveMessage.replace("{PLAYER}", Bukkit.getPlayer(name).getDisplayName());
+		}
+		else
+		{
+			leaveMessage = leaveMessage.replace("{USERNAME}", Bukkit.getOfflinePlayer(name).getName());
+			leaveMessage = leaveMessage.replace("{PLAYER}", name); //TODO: Add prefix and suffix
+		}
+		
+		p.sendMessage(leaveMessage);
 	}
 }

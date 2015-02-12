@@ -22,7 +22,7 @@ public class FakeJoin
 
 					for(Player pl : players)
 					{
-						pl.sendMessage(ChatColor.YELLOW + args[0] + " joined the game.");
+						FakeMessages.letPlayerJoin(pl, args[0]);
 					}
 
 					FakeMessages.fakeOfflinePlayers.remove(args[0]);
@@ -40,7 +40,7 @@ public class FakeJoin
 
 				for(Player pl : players)
 				{
-					pl.sendMessage(ChatColor.YELLOW + args[0] + " joined the game.");
+					FakeMessages.letPlayerJoin(pl, args[0]);
 				}
 
 				FakeMessages.fakeOnlinePlayers.add(args[0]);
@@ -59,7 +59,7 @@ public class FakeJoin
 
 				for(Player pl : players)
 				{
-					pl.sendMessage(ChatColor.YELLOW + p.getName() + " joined the game.");
+					FakeMessages.letPlayerJoin(pl, p.getName());
 				}
 
 				FakeMessages.fakeOfflinePlayers.remove(p.getName());
