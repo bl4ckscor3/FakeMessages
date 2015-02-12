@@ -1,33 +1,25 @@
-name: FakeMessages
+﻿name: FakeMessages
 main: bl4ckscor3.plugin.fmsg.core.FakeMessages
 version: 1.4.3
 author: bl4ckscor3
 description: Displays fake join/leave messages and more!
 commands:
     fjoin:
-        description: Displays a leave message.
+        description: Displays a join message and unvanishes the user if online.
         usage: /<command> [name]
         aliases: [fj,fakejoin]
-        permission: fmsg.use
     fleave:
-        description: Displays a fake leave message.
+        description: Displays a fake leave message and vanishes the user of online.
         usage: /<command> [name]
         aliases: [fl,fakeleave]
-        permission: fmsg.use
     fcheck:
-        description: Checks if a player has fakeleft. Only works on players which are online.
-        usage: /<command> <name>
-        aliases: [fc,fakecheck]
-        permission: fmsg.check
-   freload:
-       description: Reloads the configuration file.
-       usage: /<command>
-       aliases: [fr]
-       permission: fmsg.reload
+        description: Checks if a player has fake-left.
+        usage: /<command <name>
+        aliases: [fr]
 
 permissions:
     fmsg.*:
-        description: Gives access to all fmsg commands.
+        description: Gives access to all FakeMessages commands.
         children:
             fmsg.use: true
             fmsg.check: true
@@ -36,8 +28,8 @@ permissions:
         description: Allows access to fakeleave and fakejoin.
         default: op
     fmsg.check:
-        description: Allows access to check if a player has fakeleft.
+        description: Allows access to check if a player has fake-left.
         default: op
     fmsg.reload:
-        description: Allows access to reload the configuration file.
+        description: allows access to reload the configuration file.
         default: op
