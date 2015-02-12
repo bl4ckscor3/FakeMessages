@@ -29,7 +29,7 @@ public class FakeLeave
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "vanish " + args[0]);
 				}
 				else
-					p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + name + " has not fake-joined the server. Use /fjoin " + args[0] + " to let him do that.");
+					p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + args[0] + " has not fake-joined the server. Use /fjoin " + args[0] + " to let him do that.");
 				
 				firstCheck = true;
 			}
@@ -48,7 +48,7 @@ public class FakeLeave
 			else
 			{
 				if(!firstCheck)
-					p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + name + " has not fake-joined the server. Use /fjoin " + args[0] + " to let him do that.");
+					p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + args[0] + " has not fake-joined the server. Use /fjoin " + args[0] + " to let him do that.");
 			}
 		}
 		else //fake-leave for yourself
