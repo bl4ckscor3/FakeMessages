@@ -6,7 +6,6 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -128,7 +127,7 @@ public class FakeMessages extends JavaPlugin
 			joinMessage = joinMessage.replace("{USERNAME}", Bukkit.getOfflinePlayer(name).getName());
 			joinMessage = joinMessage.replace("{PLAYER}", name); //TODO: Add prefix and suffix
 		}
-		
+
 		p.sendMessage(joinMessage);
 	}
 
@@ -137,7 +136,7 @@ public class FakeMessages extends JavaPlugin
 		String leaveMessage = instance.getConfig().getString("leave-message");
 
 		leaveMessage = leaveMessage.replace("&", "\u00A7");
-		
+
 		if(isOnline(name))
 		{
 			leaveMessage = leaveMessage.replace("{USERNAME}", Bukkit.getPlayer(name).getName());
@@ -148,7 +147,7 @@ public class FakeMessages extends JavaPlugin
 			leaveMessage = leaveMessage.replace("{USERNAME}", Bukkit.getOfflinePlayer(name).getName());
 			leaveMessage = leaveMessage.replace("{PLAYER}", name); //TODO: Add prefix and suffix
 		}
-		
+
 		p.sendMessage(leaveMessage);
 	}
 }
