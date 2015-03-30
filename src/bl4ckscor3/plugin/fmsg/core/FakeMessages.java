@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import bl4ckscor3.plugin.bl4ckkitCore.core.bl4ckkitCore;
 import bl4ckscor3.plugin.fmsg.commands.Check;
 import bl4ckscor3.plugin.fmsg.commands.FakeJoin;
 import bl4ckscor3.plugin.fmsg.commands.FakeLeave;
@@ -28,15 +28,15 @@ public class FakeMessages extends JavaPlugin
 	{
 		instance = this;
 		getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);
-		getServer().getPluginManager().registerEvents(new ChatListener(), this);
+		getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 		Config.createConfig(this);
-		System.out.println("[" + getDescription().getName() + "] v" + getDescription().getVersion() + " enabled.");
+		bl4ckkitCore.getMessageManager().sendEnabledMessage(this);
 	}
 
 	@Override
 	public void onDisable()
 	{
-		System.out.println("[" + getDescription().getName() + "] v" + getDescription().getVersion() + " disabled.");
+		bl4ckkitCore.getMessageManager().sendDisabledMessage(this);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class FakeMessages extends JavaPlugin
 
 		if(p == null)
 		{
-			System.out.println("[" + getDescription().getName() + "] The console cannot use this plugin. Please join the server and execute the commands on there.");
+			bl4ckkitCore.getMessageManager().sendDisallowMessage(this);
 			return true;
 		}
 
@@ -60,7 +60,7 @@ public class FakeMessages extends JavaPlugin
 				if(args.length > 1)
 					return false;
 
-				FakeJoin.exe(p, args);
+				FakeJoin.exe(p, this, args);
 				return true;
 			}
 		}
@@ -71,7 +71,7 @@ public class FakeMessages extends JavaPlugin
 				if(args.length > 1)
 					return false;
 
-				FakeLeave.exe(p, args);
+				FakeLeave.exe(p, this, args);
 				return true;
 			}
 		}
@@ -82,7 +82,7 @@ public class FakeMessages extends JavaPlugin
 				if(args.length == 0 || args.length > 1)
 					return false;
 
-				Check.exe(p, args[0]);
+				Check.exe(p, this, args[0]);
 				return true;
 			}
 		}
@@ -91,23 +91,10 @@ public class FakeMessages extends JavaPlugin
 			if(p.hasPermission("fmsg.reload"))
 			{
 				reloadConfig();
-				p.sendMessage("[" + ChatColor.BLUE + getDescription().getName() + ChatColor.RESET + "] Reloaded configuration successfully.");
+				bl4ckkitCore.getMessageManager().sendChatMessage(p, this, "Reloaded configuration successfully.");
 				return true;
 			}
 		}
-		return false;
-	}
-
-	public static boolean isOnline(String name)
-	{
-		Player[] players = Bukkit.getOnlinePlayers();
-
-		for(Player p : players)
-		{
-			if(p.getName().equalsIgnoreCase(name))
-				return true;
-		}
-
 		return false;
 	}
 
@@ -117,7 +104,7 @@ public class FakeMessages extends JavaPlugin
 
 		joinMessage = joinMessage.replace("&", "\u00A7");
 
-		if(isOnline(name))
+		if(bl4ckkitCore.getPlayerManager().isPlayerOnline(name))
 		{
 			joinMessage = joinMessage.replace("{USERNAME}", Bukkit.getPlayer(name).getName());
 			joinMessage = joinMessage.replace("{PLAYER}", Bukkit.getPlayer(name).getDisplayName());
@@ -137,7 +124,7 @@ public class FakeMessages extends JavaPlugin
 
 		leaveMessage = leaveMessage.replace("&", "\u00A7");
 
-		if(isOnline(name))
+		if(bl4ckkitCore.getPlayerManager().isPlayerOnline(name))
 		{
 			leaveMessage = leaveMessage.replace("{USERNAME}", Bukkit.getPlayer(name).getName());
 			leaveMessage = leaveMessage.replace("{PLAYER}", Bukkit.getPlayer(name).getDisplayName());

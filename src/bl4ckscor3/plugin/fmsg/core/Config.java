@@ -2,6 +2,8 @@ package bl4ckscor3.plugin.fmsg.core;
 
 import org.bukkit.plugin.Plugin;
 
+import bl4ckscor3.plugin.bl4ckkitCore.core.bl4ckkitCore;
+
 public class Config
 {
 	public static void createConfig(Plugin plugin)
@@ -15,6 +17,6 @@ public class Config
 		plugin.getConfig().addDefault("leave-message", "&e{USERNAME} left the game.");
 		plugin.getConfig().options().copyDefaults(true);
 		plugin.saveConfig();
-		System.out.println("[" + plugin.getDescription().getName() + "] Configuration created/enabled!");
+		bl4ckkitCore.getMessageManager().sendConsoleMessage(plugin, "Configuration created/enabled!");
 	}
 }

@@ -1,20 +1,21 @@
 package bl4ckscor3.plugin.fmsg.commands;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
+import bl4ckscor3.plugin.bl4ckkitCore.core.bl4ckkitCore;
 import bl4ckscor3.plugin.fmsg.core.FakeMessages;
 
 public class FakeJoin
 {
-	public static void exe(Player p, String args[])
+	public static void exe(Player p, Plugin plugin, String args[])
 	{
 		if(args.length == 1)
 		{
 			boolean firstCheck = false;
 
-			if(FakeMessages.isOnline(args[0])) //fake-join for other players currently on the server
+			if(bl4ckkitCore.getPlayerManager().isPlayerOnline(args[0])) //fake-join for other players currently on the server
 			{
 				if(FakeMessages.fakeOfflinePlayers.contains(args[0]))
 				{
@@ -29,7 +30,7 @@ public class FakeJoin
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "vanish " + args[0]);
 				}
 				else
-					p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + args[0] + " has not fake-left the server. Use /fleave " + args[0] + " to let him do that.");
+					bl4ckkitCore.getMessageManager().sendChatMessage(p, plugin, args[0] + " has not fake-left the server. Use /fleave " + args[0] + " to let them do that.");
 
 				firstCheck = true;
 			}
@@ -48,7 +49,7 @@ public class FakeJoin
 			else
 			{
 				if(!firstCheck)
-					p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] " + args[0] + " already fake-joined the server. Use /fleave " + args[0] + " to let him fake-leave.");
+					bl4ckkitCore.getMessageManager().sendChatMessage(p, plugin, args[0] + " already fake-joined the server. Use /fleave " + args[0] + " to let them fake-leave.");
 			}
 		}
 		else //fake-join for yourself
@@ -66,7 +67,7 @@ public class FakeJoin
 				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "vanish " + p.getName());
 			}
 			else
-				p.sendMessage("[" + ChatColor.BLUE + FakeMessages.instance.getDescription().getName() + ChatColor.RESET + "] You have not fake-left the server yet. Use /fleave to do that now.");
+				bl4ckkitCore.getMessageManager().sendChatMessage(p, plugin, "You have not fake-left the server yet. Use /fleave to do that now.");
 		}
 	}
 }
