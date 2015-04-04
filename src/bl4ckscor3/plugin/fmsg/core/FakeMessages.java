@@ -30,12 +30,14 @@ public class FakeMessages extends JavaPlugin
 		getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);
 		getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 		Config.createConfig(this);
+		bl4ckkitCore.registerPlugin(this);
 		bl4ckkitCore.getMessageManager().sendEnabledMessage(this);
 	}
 
 	@Override
 	public void onDisable()
 	{
+		bl4ckkitCore.unregisterPlugin(this);
 		bl4ckkitCore.getMessageManager().sendDisabledMessage(this);
 	}
 
