@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -118,6 +122,8 @@ public class FakeMessages extends JavaPlugin
 		}
 
 		p.sendMessage(joinMessage);
+		//hard coded >.<
+		Bukkit.getServer().getPluginManager().callEvent(new PlayerJoinEvent(p, ChatColor.BLACK  + "[" + ChatColor.GREEN + "+" + ChatColor.BLACK + "]" + p.getName()));
 	}
 
 	public static void letPlayerLeave(Player p, String name)
@@ -138,5 +144,7 @@ public class FakeMessages extends JavaPlugin
 		}
 
 		p.sendMessage(leaveMessage);
+		//hard coded >.<
+		Bukkit.getServer().getPluginManager().callEvent(new PlayerQuitEvent(p, ChatColor.BLACK  + "[" + ChatColor.RED + "-" + ChatColor.BLACK + "]" + p.getDisplayName()));
 	}
 }
