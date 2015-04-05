@@ -145,6 +145,6 @@ public class FakeMessages extends JavaPlugin
 
 		p.sendMessage(leaveMessage);
 		//hard coded >.<
-		Bukkit.getServer().getPluginManager().callEvent(new PlayerQuitEvent(p, ChatColor.BLACK  + "[" + ChatColor.RED + "-" + ChatColor.BLACK + "]" + p.getDisplayName()));
+		Bukkit.getServer().getPluginManager().callEvent(new PlayerQuitEvent(p, ChatColor.BLACK  + "[" + ChatColor.RED + "-" + ChatColor.BLACK + "]" + p.getName()));
 	}
 }
