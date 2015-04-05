@@ -122,8 +122,6 @@ public class FakeMessages extends JavaPlugin
 		}
 
 		p.sendMessage(joinMessage);
-		//hard coded >.<
-		Bukkit.getServer().getPluginManager().callEvent(new PlayerJoinEvent(p, ChatColor.BLACK  + "[" + ChatColor.GREEN + "+" + ChatColor.BLACK + "]" + p.getName()));
 	}
 
 	public static void letPlayerLeave(Player p, String name)
@@ -144,7 +142,5 @@ public class FakeMessages extends JavaPlugin
 		}
 
 		p.sendMessage(leaveMessage);
-		//hard coded >.<
-		Bukkit.getServer().getPluginManager().callEvent(new PlayerQuitEvent(p, ChatColor.BLACK  + "[" + ChatColor.RED + "-" + ChatColor.BLACK + "]" + p.getName()));
 	}
 }

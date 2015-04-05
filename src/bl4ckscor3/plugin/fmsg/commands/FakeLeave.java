@@ -1,7 +1,9 @@
 package bl4ckscor3.plugin.fmsg.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
 import bl4ckscor3.plugin.bl4ckkitCore.core.bl4ckkitCore;
@@ -26,6 +28,8 @@ public class FakeLeave
 						FakeMessages.letPlayerLeave(pl, args[0]);
 					}
 
+					//hard coded >.<
+					Bukkit.getServer().getPluginManager().callEvent(new PlayerQuitEvent(p, ChatColor.BLACK  + "[" + ChatColor.RED + "-" + ChatColor.BLACK + "]" + p.getDisplayName()));
 					FakeMessages.fakeOfflinePlayers.add(args[0]);
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "vanish " + args[0]);
 				}
