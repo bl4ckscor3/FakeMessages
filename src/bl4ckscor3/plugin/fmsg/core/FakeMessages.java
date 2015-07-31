@@ -27,8 +27,7 @@ public class FakeMessages extends JavaPlugin
 	public void onEnable()
 	{
 		instance = this;
-		getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);
-		getServer().getPluginManager().registerEvents(new ChatListener(this), this);
+		bl4ckkitCore.getPluginManager().registerEvents(this, new JoinLeaveListener(), new ChatListener(this));
 		Config.createConfig(this);
 		bl4ckkitCore.registerPlugin(this);
 		bl4ckkitCore.getMessageManager().sendEnabledMessage(this);
